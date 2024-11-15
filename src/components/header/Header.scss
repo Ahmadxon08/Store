@@ -1,0 +1,115 @@
+header {
+  background: #fff;
+  width: 100%;
+  position: sticky;
+  z-index: 2;
+  top: 0;
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 15px 8px;
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: end;
+      width: 100%;
+      gap: 16px;
+      .navlist {
+        display: flex;
+        align-items: center;
+        width: 30%;
+
+        ul {
+          display: flex;
+          justify-content: space-between;
+          width: 100%;
+
+          align-items: center;
+          li {
+            display: flex;
+            a {
+              font-family: Rubik;
+              font-size: 16px;
+              font-weight: 500;
+              line-height: 24px;
+              color: #565656;
+            }
+          }
+        }
+      }
+      .burger {
+        display: none;
+        align-items: center;
+        cursor: pointer;
+        border-radius: 4px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    background: #c09b9b;
+    width: 100%;
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 15px 8px;
+      .navbar {
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        width: 100%;
+        gap: 16px;
+        position: relative;
+        .navlist {
+          display: none;
+
+          &.show {
+            display: flex;
+            position: absolute;
+            justify-content: flex-end;
+            align-items: end;
+
+            flex-direction: column;
+            width: 100%;
+            background: #000000d0;
+            top: 64px;
+            left: 0;
+            bottom: 0;
+
+            position: fixed;
+            z-index: 1000;
+          }
+          ul {
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            width: 30%;
+            height: 100%;
+            background-color: #fff;
+            padding: 20px;
+            align-items: center;
+            gap: 20px;
+            li {
+              width: 100%;
+              a {
+                color: #ccc;
+                text-decoration: none;
+              }
+            }
+          }
+        }
+        .burger {
+          display: flex;
+        }
+      }
+    }
+  }
+}
