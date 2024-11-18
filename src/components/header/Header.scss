@@ -39,13 +39,20 @@ header {
           }
         }
       }
-      .burger {
-        display: none;
+
+      .navfunction {
+        display: flex;
         align-items: center;
-        cursor: pointer;
-        border-radius: 4px;
-        background-color: #fff;
-        border: 1px solid #ccc;
+        justify-content: end;
+        width: 15%;
+        .burger {
+          display: none;
+          align-items: center;
+          cursor: pointer;
+          border-radius: 4px;
+          background-color: #fff;
+          border: 1px solid #ccc;
+        }
       }
     }
   }
@@ -109,8 +116,19 @@ header {
             }
           }
         }
-        .burger {
+        .navfunction {
           display: flex;
+          align-items: center;
+          justify-content: end;
+          width: 15%;
+          .burger {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            border-radius: 4px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+          }
         }
       }
     }

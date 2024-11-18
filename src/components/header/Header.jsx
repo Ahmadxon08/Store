@@ -3,6 +3,7 @@ import "./Header.scss";
 import { RiCloseLargeLine } from "react-icons/ri";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useState } from "react";
+import Language from "../lang/Language";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,19 +32,16 @@ const Header = () => {
                 </li>
               </ul>
             </div>
-
-            <select name="" id="">
-              <option value="">English</option>
-              <option value="">Spanish</option>
-              <option value="">French</option>
-            </select>
-            <button onClick={toggleMenu} className="burger">
-              {isOpen ? (
-                <RiCloseLargeLine size={32} />
-              ) : (
-                <RxHamburgerMenu color="black" size={32} />
-              )}
-            </button>
+            <div className="navfunction">
+              <Language />
+              <button onClick={toggleMenu} className="burger">
+                {isOpen ? (
+                  <RiCloseLargeLine size={32} />
+                ) : (
+                  <RxHamburgerMenu color="black" size={32} />
+                )}
+              </button>
+            </div>
           </div>
         </nav>
       </div>

@@ -16,3 +16,6 @@ li {
 a {
   text-decoration: none;
 }
+a.active {
+  color: #007bff;
+}
