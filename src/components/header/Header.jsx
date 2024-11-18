@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Header.scss";
 import { RiCloseLargeLine } from "react-icons/ri";
 import { RxHamburgerMenu } from "react-icons/rx";
@@ -22,13 +22,13 @@ const Header = () => {
             <div className={`navlist ${isOpen ? "show" : ""}`}>
               <ul>
                 <li>
-                  <NavLink>main page</NavLink>
+                  <Link>Main Page</Link>
                 </li>
                 <li>
-                  <NavLink>Telegram</NavLink>
+                  <Link>Telegram</Link>
                 </li>
                 <li>
-                  <NavLink>Pay</NavLink>
+                  <Link>Pay</Link>
                 </li>
               </ul>
             </div>
