@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import "./Header.scss";
 import { RiCloseLargeLine } from "react-icons/ri";
-import { RxHamburgerMenu } from "react-icons/rx";
 import { useState } from "react";
 import Language from "../lang/Language";
+import { TfiAlignRight } from "react-icons/tfi";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -38,7 +38,7 @@ const Header = () => {
                 {isOpen ? (
                   <RiCloseLargeLine size={32} />
                 ) : (
-                  <RxHamburgerMenu color="black" size={32} />
+                  <TfiAlignRight size={32} />
                 )}
               </button>
             </div>

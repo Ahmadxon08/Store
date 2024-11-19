@@ -1,5 +1,12 @@
+import Popular from "../popular/Popular";
+
+import "./Main.scss";
 const Main = () => {
-  return <main></main>;
+  return (
+    <main>
+      <Popular />
+    </main>
+  );
 };
 
 export default Main;
