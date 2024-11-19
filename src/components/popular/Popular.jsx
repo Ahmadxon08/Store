@@ -1,6 +1,7 @@
 import axios from "axios";
 import "./Popular.scss";
 import { useEffect, useState } from "react";
+import ProductDetailModal from "../productModal/ProductDatailModal";
 
 const cube = "./assets/images/cube.png";
 const elps = "./assets/images/elips.png";
@@ -10,10 +11,11 @@ const Popular = () => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   const fetchProducts = async () => {
-    setIsLoading(true); // Yuklanayotgan holatni yoqish
-    setError(null); // Xatolikni tozalash
+    setIsLoading(true);
+    setError(null);
     try {
       const response = await axios("https://dummyjson.com/products");
       const data = response.data.products;
@@ -23,7 +25,7 @@ const Popular = () => {
       console.log(err);
       setError(err);
     } finally {
-      setIsLoading(false); // Yuklanayotgan holatni o'chirish
+      setIsLoading(false);
     }
   };
 
@@ -31,10 +33,26 @@ const Popular = () => {
   console.log(isLoading);
 
   console.log(products);
+  const handleClick = (product) => {
+    setSelectedProduct(product);
+  };
 
+  const handleCloseModal = () => {
+    setSelectedProduct(null);
+  };
   useEffect(() => {
     fetchProducts();
   }, []);
+  useEffect(() => {
+    if (selectedProduct) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [selectedProduct]);
   return (
     <section>
       <div className="imgs">
@@ -58,7 +76,10 @@ const Popular = () => {
             <div>{error}</div>
           ) : (
             products.slice(0, 10).map((product) => (
-              <div key={product.id} className="product">
+              <div
+                key={product.id}
+                className="product"
+                onClick={() => handleClick(product)}>
                 <div className="imgWrapper">
                   <img src={product.thumbnail} alt={product.title} />
                 </div>
@@ -74,6 +95,12 @@ const Popular = () => {
           )}
         </div>
       </div>
+      {selectedProduct && (
+        <ProductDetailModal
+          product={selectedProduct}
+          onClose={handleCloseModal}
+        />
+      )}
     </section>
   );
 };
