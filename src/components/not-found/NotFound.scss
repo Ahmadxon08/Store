@@ -1,0 +1,41 @@
+.notfound {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  h1 {
+    font-family: Rubik;
+    font-size: 80px;
+    font-weight: 700;
+    line-height: 96px;
+    color: #333030;
+  }
+  p {
+    font-family: Rubik;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 36px;
+    color: #1b1111;
+    margin-top: 20px;
+  }
+  a {
+    font-family: Rubik;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 27px;
+    color: #fff;
+    margin-top: 20px;
+    text-decoration: none;
+    transition: all 0.4s;
+    padding: 10px 30px;
+    border-radius: 4px;
+    transition: all 0.3s;
+    background-color: #9038cf;
+    &:hover {
+      color: #fff;
+      transform: scale(1.02);
+    }
+  }
+}
+/* NotFound.scss */
