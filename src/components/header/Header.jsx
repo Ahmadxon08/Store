@@ -4,6 +4,7 @@ import { RiCloseLargeLine } from "react-icons/ri";
 import { useState } from "react";
 import Language from "../lang/Language";
 import { TfiAlignRight } from "react-icons/tfi";
+import { LiaCompressSolid } from "react-icons/lia";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,7 +17,9 @@ const Header = () => {
       <div className="container">
         <nav>
           <div className="logo">
-            <span>Logo</span>
+            <span>
+              <LiaCompressSolid size={44} color="#7421b0" />
+            </span>
           </div>
           <div className="navbar">
             <div className={`navlist ${isOpen ? "show" : ""}`}>

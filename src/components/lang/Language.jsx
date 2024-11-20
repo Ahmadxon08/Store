@@ -44,7 +44,6 @@ const Language = () => {
     <Box sx={{ minWidth: 120 }}>
       <Button
         onClick={handleOpenMenu}
-        onMouseOver={handleOpenMenu}
         sx={{
           display: "flex",
           alignItems: "center",
@@ -63,6 +62,11 @@ const Language = () => {
         </span>
       </Button>
       <Menu
+        sx={{
+          position: "absolute",
+          zIndex: 1000,
+          top: "10px",
+        }}
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
         onClose={handleCloseMenu}

@@ -14,7 +14,7 @@ const ProductDetailModal = ({ product, onClose }) => {
         <div className="cardBody">
           {product.images.map((img, i) => (
             <div className="cardImg" key={i}>
-              <img src={img} alt="img" />
+              <img src={img} alt="img" loading="lazy" />
             </div>
           ))}
         </div>
