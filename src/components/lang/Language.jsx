@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Box, Menu, MenuItem, Button } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 const Language = () => {
+  const { i18n } = useTranslation();
+
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedLanguage, setSelectedLanguage] = useState({
     value: "en",
@@ -9,6 +12,25 @@ const Language = () => {
     icon: "/assets/images/eng.png",
   });
 
+  useEffect(() => {
+    const savedLanguage = localStorage.getItem("language");
+    if (savedLanguage) {
+      const lang = languages.find(
+        (language) => language.value === savedLanguage
+      );
+      if (lang) {
+        setSelectedLanguage(lang);
+        i18n.changeLanguage(savedLanguage);
+      }
+    }
+  }, [i18n]);
+
+  const changeLanguage = (lang) => {
+    i18n.changeLanguage(lang);
+    localStorage.setItem("language", lang);
+    const selectedLang = languages.find((language) => language.value === lang);
+    if (selectedLang) setSelectedLanguage(selectedLang);
+  };
   const handleOpenMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -17,10 +39,7 @@ const Language = () => {
     setAnchorEl(null);
   };
 
-  const handleSelectLanguage = (lang) => {
-    setSelectedLanguage(lang);
-    handleCloseMenu();
-  };
+  console.log();
 
   const languages = [
     {
@@ -75,7 +94,7 @@ const Language = () => {
         {languages.map((lang) => (
           <MenuItem
             key={lang.value}
-            onClick={() => handleSelectLanguage(lang)}
+            onClick={() => changeLanguage(lang.value)}
             sx={{ display: "flex", alignItems: "center" }}>
             <img
               src={lang.icon}

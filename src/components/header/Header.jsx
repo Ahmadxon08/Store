@@ -5,10 +5,15 @@ import { useState } from "react";
 import Language from "../lang/Language";
 import { TfiAlignRight } from "react-icons/tfi";
 import { LiaCompressSolid } from "react-icons/lia";
+import { useTranslation } from "react-i18next";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
+
+  const { t } = useTranslation();
+
+  console.log(t("greeting"));
 
   console.log(isOpen);
 
