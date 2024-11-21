@@ -13,13 +13,12 @@ header {
     .navbar {
       display: flex;
       align-items: center;
-      justify-content: end;
-      width: 100%;
-      gap: 16px;
+      justify-content: space-between;
+      width: 40%;
       .navlist {
         display: flex;
         align-items: center;
-        width: 30%;
+        width: 60%;
 
         ul {
           display: flex;
@@ -43,8 +42,14 @@ header {
       .navfunction {
         display: flex;
         align-items: center;
-        justify-content: flex-end;
-        width: 15%;
+        justify-content: end;
+        width: 30%;
+        .lang {
+          z-index: 1000;
+          display: flex;
+          width: 100%;
+          justify-content: flex-end;
+        }
         .burger {
           display: none;
           align-items: center;
@@ -92,28 +97,47 @@ header {
             bottom: 0;
 
             position: fixed;
-            z-index: 1000;
+            z-index: 44;
           }
           ul {
             display: flex;
             flex-direction: column;
             justify-content: start;
-            width: 30%;
+            width: 40%;
             height: 100%;
             background-color: #fff;
-            padding: 20px;
+            padding: 20px 0;
             align-items: start;
-            gap: 20px;
             li {
               display: flex;
+              width: 100%;
+              padding-left: 30px;
+              transition: all 0.5s;
+              padding: 20px 20px;
+              border-bottom: 2px solid #ccc;
+              &:hover {
+                background: #00000070;
+                a {
+                  color: #7421b0;
+                }
+              }
               a {
                 font-family: Rubik;
                 font-size: 16px;
                 font-weight: 500;
                 line-height: 24px;
               }
-              a:hover {
-                color: #b81111d0;
+              &:nth-child(1) a {
+                animation: slideIn 0.5s ease-in-out 0.1s both;
+              }
+              &:nth-child(2) a {
+                animation: slideIn 0.5s ease-in-out 0.2s both;
+              }
+              &:nth-child(3) a {
+                animation: slideIn 0.5s ease-in-out 0.3s both;
+              }
+              &:nth-child(4) a {
+                animation: slideIn 0.5s ease-in-out 0.4s both;
               }
             }
           }
@@ -121,8 +145,12 @@ header {
         .navfunction {
           display: flex;
           align-items: center;
-          justify-content: end;
-          width: 15%;
+          justify-content: space-between;
+          width: 35%;
+          gap: 40px;
+          .lang {
+            z-index: 1000;
+          }
           .burger {
             display: flex;
             align-items: center;
@@ -133,5 +161,15 @@ header {
         }
       }
     }
+  }
+}
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
   }
 }

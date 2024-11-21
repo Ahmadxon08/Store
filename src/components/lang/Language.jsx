@@ -41,15 +41,16 @@ const Language = () => {
   ];
 
   return (
-    <Box sx={{ minWidth: 120 }}>
+    <Box sx={{ display: "flex", justifyContent: "flex-end", minWidth: 120 }}>
       <Button
         onClick={handleOpenMenu}
         onMouseOver={handleOpenMenu}
         sx={{
           display: "flex",
+          color: "#565656",
           alignItems: "center",
-          color: "#7000ff",
           textTransform: "none",
+          zIndex: 1000,
         }}>
         <img
           src={selectedLanguage.icon}
@@ -65,6 +66,7 @@ const Language = () => {
       <Menu
         sx={{
           marginTop: "15px",
+          zIndex: 1000,
         }}
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}

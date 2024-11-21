@@ -36,7 +36,9 @@ const Header = () => {
               </ul>
             </div>
             <div className="navfunction">
-              <Language />
+              <div className="lang">
+                <Language />
+              </div>
               <button onClick={toggleMenu} className="burger">
                 {isOpen ? (
                   <RiCloseLargeLine size={32} />
