@@ -1,61 +1,84 @@
 section {
   width: 100%;
-  .filterHead {
+  .typeHead {
+    width: 100%;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
     h2 {
-      font-family: Rubik;
+      width: 120px;
       font-size: 24px;
-      font-weight: 500;
-      line-height: 32px;
-      cursor: pointer;
-      transition: all 0.4s;
-      &:hover {
-        color: #b81111;
-      }
+      font-weight: 600;
+      font-family: Rubik;
+      color: #661d9b;
     }
   }
-  .filterBody {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 30px;
-    margin-top: 20px;
-    .filterCard {
-      width: 350px;
-      background-color: #fff;
-      border-radius: 2px;
-      box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
-      display: flex;
-      align-items: start;
-      padding: 10px;
-      justify-content: center;
-      flex-direction: column;
-      gap: 10px;
-
-      transition: all 0.4s;
-      &:hover {
-        box-shadow: 4px 0px 9px rgba(0, 0, 0, 0.2);
-      }
-      .imgWrapper {
-        overflow: hidden;
-        img {
-          width: 100%;
-          height: 100%;
-          transition: all 0.4s;
-          object-fit: cover;
-          &:hover {
-            transform: scale(1.1);
+  .typeBody {
+    width: 100%;
+    min-height: 40vh;
+    .boxBody {
+      display: grid;
+      align-items: center;
+      justify-items: center;
+      margin-top: 20px;
+      width: 100%;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      .box {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        padding: 10px;
+        border: 1px solid #cccccc6b;
+        transition: all 0.4s ease-in-out;
+        border-radius: 8px;
+        gap: 8px;
+        padding-bottom: 15px;
+        &:hover {
+          box-shadow: 0px 18px 45px -10px #00000021;
+          img {
+            transform: scale(1.03);
           }
         }
-      }
-      h3 {
-        font-family: Rubik;
-        font-size: 16px;
-        font-weight: 500;
-        line-height: 24px;
+        .imgWrapper {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          border-radius: 8px;
+          overflow: hidden;
+
+          height: 300px;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease-in-out;
+          }
+        }
+        .boxText {
+          display: flex;
+          flex-direction: column;
+          align-items: start;
+          gap: 8px;
+          h3 {
+            font-size: 18px;
+            font-weight: 600;
+            font-family: Rubik;
+            color: #625e64;
+          }
+          span {
+            font-size: 16px;
+            font-weight: 400;
+            font-family: Rubik;
+            color: #625e64;
+            &:nth-of-type(even) {
+              color: #000;
+              font-size: 18px;
+            }
+          }
+        }
       }
     }
   }
@@ -64,61 +87,43 @@ section {
 @media (max-width: 768px) {
   section {
     width: 100%;
-    .filterHead {
+    .typeHead {
+      width: 100%;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 20px;
       h2 {
-        font-family: Rubik;
+        width: 120px;
         font-size: 24px;
-        font-weight: 500;
-        line-height: 32px;
-        cursor: pointer;
-        transition: all 0.4s;
-        &:hover {
-          color: #b81111;
-        }
+        font-weight: 600;
+        font-family: Rubik;
       }
     }
-    .filterBody {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      margin-top: 20px;
-      .filterCard {
-        width: 300px;
-        background-color: #fff;
-        border-radius: 2px;
-        box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
-        display: flex;
-        align-items: start;
-        padding: 10px;
-        justify-content: center;
-        flex-direction: column;
-        gap: 10px;
-
-        transition: all 0.4s;
-        &:hover {
-          box-shadow: 4px 0px 9px rgba(0, 0, 0, 0.2);
-        }
-        .imgWrapper {
-          overflow: hidden;
-          img {
+    .typeBody {
+      width: 100%;
+      min-height: 40vh;
+      .boxBody {
+        display: grid;
+        align-items: center;
+        justify-items: center;
+        margin-top: 20px;
+        width: 100%;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        .box {
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+          border: 1px solid red;
+          padding: 10px;
+          .imgWrapper {
             width: 100%;
-            height: 100%;
-            transition: all 0.4s;
-            object-fit: cover;
-            &:hover {
-              transform: scale(1.1);
+            height: 200px;
+            img {
+              width: 100%;
+              height: 100%;
             }
           }
-        }
-        h3 {
-          font-family: Rubik;
-          font-size: 16px;
-          font-weight: 500;
-          line-height: 24px;
         }
       }
     }

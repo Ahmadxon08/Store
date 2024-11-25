@@ -60,11 +60,11 @@ section {
   .pupularBody {
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
     width: 100%;
-    justify-content: space-between;
     gap: 30px;
     padding: 70px 30px;
+    flex-wrap: wrap;
+    justify-content: space-between;
     .product {
       display: flex;
       align-items: start;
@@ -175,7 +175,7 @@ section {
       .product {
         display: flex;
         align-items: start;
-        width: 500px;
+        width: 40%;
         height: 300px;
         border: 1px solid #dad4d4;
         border-radius: 8px;
