@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="footerBody">
           <h1>Pay the deposit</h1>
 
-          <div className="pay">
+          <form className="pay">
             <div className="text">
               <textarea name="" id="" placeholder="description..."></textarea>
             </div>
@@ -64,7 +64,7 @@ const Footer = () => {
                 <span>32423423</span>
               </div>
             </div>
-          </div>
+          </form>
         </div>
       </div>
       <div className="copyright">

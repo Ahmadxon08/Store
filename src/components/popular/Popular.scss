@@ -3,6 +3,24 @@ section {
   width: 100%;
   padding-top: 30px;
   position: relative;
+  overflow: hidden;
+  .btmImage {
+    display: none;
+    align-items: end;
+    justify-content: flex-end;
+    position: absolute;
+    bottom: 0;
+    z-index: -2;
+    right: -4%;
+    width: 30%;
+
+    img {
+      height: auto;
+      width: auto;
+      z-index: -3;
+      transform: rotate(45deg);
+    }
+  }
   .imgs {
     position: relative;
     z-index: -2;

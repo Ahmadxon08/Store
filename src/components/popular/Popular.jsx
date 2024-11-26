@@ -5,6 +5,7 @@ import ProductDetailModal from "../productModal/ProductDatailModal";
 
 const cube = "./assets/images/cube.png";
 const elps = "./assets/images/elips.png";
+const btmImage = "./assets/images/btm.png";
 
 const Popular = () => {
   const [products, setProducts] = useState([]);
@@ -101,6 +102,9 @@ const Popular = () => {
           onClose={handleCloseModal}
         />
       )}
+      <div className="btmImage">
+        <img src={btmImage} alt="" />
+      </div>
     </section>
   );
 };

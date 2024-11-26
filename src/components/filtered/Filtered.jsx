@@ -5,7 +5,7 @@ import "./Filtered.scss";
 
 const Filtered = () => {
   const types = ["bag", "medal", "trophies", "jersey"];
-  const [activeTab, setActiveTab] = useState("bag"); // Boshlang'ich qiymat "bag"
+  const [activeTab, setActiveTab] = useState("bag");
 
   const handleTabChange = (event, newValue) => {
     setActiveTab(newValue);
