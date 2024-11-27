@@ -3,11 +3,14 @@ import "./index.css";
 import App from "./App.jsx";
 import { BrowserRouter as Router } from "react-router-dom";
 import "./i18n.js";
+import { ProductProvider } from "./context/useContext.jsx";
 createRoot(document.getElementById("root")).render(
-  <Router
-    future={{
-      v7_relativeSplatPath: true,
-    }}>
-    <App />
-  </Router>
+  <ProductProvider>
+    <Router
+      future={{
+        v7_relativeSplatPath: true,
+      }}>
+      <App />
+    </Router>
+  </ProductProvider>
 );

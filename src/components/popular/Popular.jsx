@@ -1,37 +1,40 @@
-import axios from "axios";
 import "./Popular.scss";
 import { useEffect, useState } from "react";
 import ProductDetailModal from "../productModal/ProductDatailModal";
+import { useProducts } from "../../context/useContext.jsx";
+import ProductImages from "../tab/ProductImages.jsx";
 
 const cube = "./assets/images/cube.png";
 const elps = "./assets/images/elips.png";
 const btmImage = "./assets/images/btm.png";
 
 const Popular = () => {
-  const [products, setProducts] = useState([]);
-
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [isLoading] = useState(false);
+  const [error] = useState(null);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
-  const fetchProducts = async () => {
-    setIsLoading(true);
-    setError(null);
-    try {
-      const response = await axios("https://dummyjson.com/products");
-      const data = response.data.products;
-      setProducts(data);
-    } catch (err) {
-      setError("Something went wrong. Please try again!, ");
-      console.log(err);
-      setError(err);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const { products } = useProducts();
 
-  console.log(error);
-  console.log(isLoading);
+  console.log(products);
+
+  // const fetchProducts = async () => {
+  //   setIsLoading(true);
+  //   setError(null);
+  //   try {
+  //     const response = await axios("https://dummyjson.com/products");
+  //     const data = response.data.products;
+  //     setProducts(data);
+  //   } catch (err) {
+  //     setError("Something went wrong. Please try again!, ");
+  //     console.log(err);
+  //     setError(err);
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
+
+  // console.log(error);
+  // console.log(isLoading);
 
   console.log(products);
   const handleClick = (product) => {
@@ -41,9 +44,9 @@ const Popular = () => {
   const handleCloseModal = () => {
     setSelectedProduct(null);
   };
-  useEffect(() => {
-    fetchProducts();
-  }, []);
+  // useEffect(() => {
+  //   fetchProducts();
+  // }, []);
   useEffect(() => {
     if (selectedProduct) {
       document.body.style.overflow = "hidden";
@@ -76,20 +79,16 @@ const Popular = () => {
           ) : error ? (
             <div>{error}</div>
           ) : (
-            products.slice(0, 10).map((product) => (
+            products.map((product) => (
               <div
-                key={product.id}
+                key={product._id}
                 className="product"
                 onClick={() => handleClick(product)}>
-                <div className="imgWrapper">
-                  <img src={product.thumbnail} alt={product.title} />
-                </div>
+                <ProductImages product={product} />
                 <div className="productText">
-                  <h4>{product.title}</h4>
-                  <p>{product.description.slice(0, 32)}...</p>
+                  <h4>{product.subTitleEn}</h4>
                   <span>Rs. {product.price}$</span>
-                  <span>Rating: {product.rating}</span>
-                  <button>cart</button>
+                  <button onClick={(e) => e.stopPropagation()}>cart</button>
                 </div>
               </div>
             ))

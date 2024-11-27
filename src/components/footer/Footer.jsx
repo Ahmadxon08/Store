@@ -1,6 +1,8 @@
 import { TextField } from "@mui/material";
 import "./Footer.scss";
 
+// import axios from "axios";
+
 const Footer = () => {
   return (
     <footer>
