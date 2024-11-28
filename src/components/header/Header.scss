@@ -4,6 +4,8 @@ header {
   position: sticky;
   z-index: 2222;
   top: 0;
+  margin-bottom: 50px;
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2);
   nav {
     display: flex;
     align-items: center;
@@ -122,7 +124,6 @@ header {
                 }
               }
               a {
-               
                 font-family: Rubik;
                 font-size: 16px;
                 font-weight: 500;

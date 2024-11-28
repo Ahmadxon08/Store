@@ -22,9 +22,9 @@ const Header = () => {
       <div className="container">
         <nav>
           <div className="logo">
-            <span>
+            <a href="/">
               <LiaCompressSolid size={44} color="#7421b0" />
-            </span>
+            </a>
           </div>
           <div className="navbar">
             <div className={`navlist ${isOpen ? "show" : ""}`}>

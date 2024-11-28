@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import ProductDetailModal from "../productModal/ProductDatailModal";
 import { useProducts } from "../../context/useContext.jsx";
 import ProductImages from "../tab/ProductImages.jsx";
+import useLanguageStore from "../lang/languageStore.js";
 
 const cube = "./assets/images/cube.png";
 const elps = "./assets/images/elips.png";
@@ -12,31 +13,14 @@ const Popular = () => {
   const [isLoading] = useState(false);
   const [error] = useState(null);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const { selectedLanguage } = useLanguageStore();
+
+  console.log(selectedLanguage);
 
   const { products } = useProducts();
 
   console.log(products);
 
-  // const fetchProducts = async () => {
-  //   setIsLoading(true);
-  //   setError(null);
-  //   try {
-  //     const response = await axios("https://dummyjson.com/products");
-  //     const data = response.data.products;
-  //     setProducts(data);
-  //   } catch (err) {
-  //     setError("Something went wrong. Please try again!, ");
-  //     console.log(err);
-  //     setError(err);
-  //   } finally {
-  //     setIsLoading(false);
-  //   }
-  // };
-
-  // console.log(error);
-  // console.log(isLoading);
-
-  console.log(products);
   const handleClick = (product) => {
     setSelectedProduct(product);
   };
@@ -44,9 +28,7 @@ const Popular = () => {
   const handleCloseModal = () => {
     setSelectedProduct(null);
   };
-  // useEffect(() => {
-  //   fetchProducts();
-  // }, []);
+
   useEffect(() => {
     if (selectedProduct) {
       document.body.style.overflow = "hidden";
@@ -57,6 +39,26 @@ const Popular = () => {
       document.body.style.overflow = "auto";
     };
   }, [selectedProduct]);
+
+  const getTitle = (product) => {
+    if (selectedLanguage.value === "en") {
+      return {
+        subtitle: product.subTitleEn,
+        title: product.titleEn,
+      };
+    } else if (selectedLanguage.value === "ru") {
+      return {
+        subtitle: product.subTitleRu,
+        title: product.titleRu,
+      };
+    } else {
+      return {
+        subtitle: product.subTitleUz,
+        title: product.titleUz,
+      };
+    }
+  };
+
   return (
     <section>
       <div className="imgs">
@@ -79,19 +81,23 @@ const Popular = () => {
           ) : error ? (
             <div>{error}</div>
           ) : (
-            products.map((product) => (
-              <div
-                key={product._id}
-                className="product"
-                onClick={() => handleClick(product)}>
-                <ProductImages product={product} />
-                <div className="productText">
-                  <h4>{product.subTitleEn}</h4>
-                  <span>Rs. {product.price}$</span>
-                  <button onClick={(e) => e.stopPropagation()}>cart</button>
+            products.map((product) => {
+              const { subtitle, title } = getTitle(product); // Get the correct title and subtitle based on the language
+
+              return (
+                <div
+                  key={product._id}
+                  className="product"
+                  onClick={() => handleClick(product)}>
+                  <ProductImages product={product} />
+                  <div className="productText">
+                    <h4>{subtitle}</h4> {/* Dynamically rendered subtitle */}
+                    <p>{title}</p> {/* Dynamically rendered title */}
+                    <span>{product.price} sum</span>
+                  </div>
                 </div>
-              </div>
-            ))
+              );
+            })
           )}
         </div>
       </div>

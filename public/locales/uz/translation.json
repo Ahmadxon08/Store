@@ -1,4 +1,8 @@
 {
   "greeting": "Salom",
-  "welcome": "Bizning saytga xush kelibsiz!"
+  "welcome": "Bizning veb-saytimizga xush kelibsiz!",
+  "bag": "sumka",
+  "medal": "medal",
+  "trophies": "sovrinlar",
+  "jersey": "futbolka"
 }

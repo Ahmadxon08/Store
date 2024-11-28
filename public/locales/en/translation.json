@@ -1,4 +1,8 @@
 {
   "greeting": "Hello",
-  "welcome": "Welcome to our website!"
+  "welcome": "Welcome to our website!",
+  "bag": "bag",
+  "medal": "medal",
+  "trophies": "trophies",
+  "jersey": "jersey"
 }

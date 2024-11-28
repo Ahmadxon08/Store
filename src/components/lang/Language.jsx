@@ -1,16 +1,13 @@
 import { useEffect, useState } from "react";
 import { Box, Menu, MenuItem, Button } from "@mui/material";
 import { useTranslation } from "react-i18next";
+import useLanguageStore from "./languageStore";
 
 const Language = () => {
   const { i18n } = useTranslation();
+  const { selectedLanguage, setLanguage, languages } = useLanguageStore();
 
   const [anchorEl, setAnchorEl] = useState(null);
-  const [selectedLanguage, setSelectedLanguage] = useState({
-    value: "en",
-    label: "EN",
-    icon: "/assets/images/eng.png",
-  });
 
   useEffect(() => {
     const savedLanguage = localStorage.getItem("language");
@@ -19,18 +16,12 @@ const Language = () => {
         (language) => language.value === savedLanguage
       );
       if (lang) {
-        setSelectedLanguage(lang);
+        setLanguage(lang.value); // set the language from Zustand
         i18n.changeLanguage(savedLanguage);
       }
     }
-  }, [i18n]);
+  }, [i18n, languages, setLanguage]);
 
-  const changeLanguage = (lang) => {
-    i18n.changeLanguage(lang);
-    localStorage.setItem("language", lang);
-    const selectedLang = languages.find((language) => language.value === lang);
-    if (selectedLang) setSelectedLanguage(selectedLang);
-  };
   const handleOpenMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -39,25 +30,29 @@ const Language = () => {
     setAnchorEl(null);
   };
 
-  console.log();
+  const changeLanguage = (lang) => {
+    i18n.changeLanguage(lang);
+    setLanguage(lang); // update the language state in Zustand
+  };
+  let selectedSubtitle = null;
+  let selectedTitle = null;
+  if (selectedLanguage.value === "en") {
+    selectedSubtitle = "subTitleEn";
+    selectedTitle = "titleEn";
+  } else if (selectedLanguage.value === "ru") {
+    selectedSubtitle = "subTitleRu";
+    selectedTitle = "titleRu";
+  } else if (selectedLanguage.value === "uz") {
+    selectedSubtitle = "subTitleUz";
+    selectedTitle = "titleUz";
+  }
 
-  const languages = [
-    {
-      value: "en",
-      label: "EN",
-      icon: "/assets/images/eng.png",
-    },
-    {
-      value: "ru",
-      label: "RU",
-      icon: "/assets/images/ru.png",
-    },
-    {
-      value: "uz",
-      label: "UZ",
-      icon: "/assets/images/uz.png",
-    },
-  ];
+  console.log("sssssssss", typeof selectedTitle);
+
+  console.log("Selected Subtitle:", selectedSubtitle);
+
+  localStorage.setItem("selectedSubtitle", selectedSubtitle);
+  localStorage.setItem("selectedTitle", selectedTitle);
 
   return (
     <Box sx={{ display: "flex", justifyContent: "flex-end", minWidth: 120 }}>
