@@ -19,7 +19,7 @@ const Filtered = () => {
           <Tabs
             value={activeTab}
             onChange={handleTabChange}
-            textColor="#7421b0"
+            textColor="secondary"
             sx={{
               width: "90%",
               "& .MuiTabs-indicator": {
