@@ -82,7 +82,9 @@ const FilteredItem = ({ selectedType }) => {
   return (
     <>
       {loading ? (
-        <p>Loading...</p>
+        <div className="loading">
+          <p>Loading...</p>
+        </div>
       ) : error ? (
         <p>{error}</p>
       ) : products.length > 0 ? (

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "./Header.scss";
 import { RiCloseLargeLine } from "react-icons/ri";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Language from "../lang/Language";
 import { TfiAlignRight } from "react-icons/tfi";
 import { LiaCompressSolid } from "react-icons/lia";
@@ -17,8 +17,24 @@ const Header = () => {
 
   console.log(isOpen);
 
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // 50px'dan yuqoriga aylanganda class qo'shiladi
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   return (
-    <header>
+    <header className={isScrolled ? "scrolled" : ""}>
       <div className="container">
         <nav>
           <div className="logo">

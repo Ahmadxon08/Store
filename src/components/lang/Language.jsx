@@ -16,7 +16,7 @@ const Language = () => {
         (language) => language.value === savedLanguage
       );
       if (lang) {
-        setLanguage(lang.value); // set the language from Zustand
+        setLanguage(lang.value);
         i18n.changeLanguage(savedLanguage);
       }
     }
@@ -32,7 +32,7 @@ const Language = () => {
 
   const changeLanguage = (lang) => {
     i18n.changeLanguage(lang);
-    setLanguage(lang); // update the language state in Zustand
+    setLanguage(lang);
   };
   let selectedSubtitle = null;
   let selectedTitle = null;
@@ -55,7 +55,13 @@ const Language = () => {
   localStorage.setItem("selectedTitle", selectedTitle);
 
   return (
-    <Box sx={{ display: "flex", justifyContent: "flex-end", minWidth: 120 }}>
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "flex-end",
+        minWidth: 120,
+        cursor: "pointer",
+      }}>
       <Button
         onClick={handleOpenMenu}
         onMouseOver={handleOpenMenu}
@@ -79,8 +85,8 @@ const Language = () => {
       </Button>
       <Menu
         sx={{
-          marginTop: "15px",
-          zIndex: 1000,
+          marginTop: "21px",
+          zIndex: 10432,
         }}
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}

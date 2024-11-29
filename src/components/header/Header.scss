@@ -4,8 +4,9 @@ header {
   position: sticky;
   z-index: 2222;
   top: 0;
+  transition: all 0.4s;
   margin-bottom: 50px;
-  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2);
+  box-shadow: none;
   nav {
     display: flex;
     align-items: center;
@@ -47,8 +48,8 @@ header {
         justify-content: end;
         width: 30%;
         .lang {
-          z-index: 1000;
           display: flex;
+          cursor: pointer;
           width: 100%;
           justify-content: flex-end;
         }
@@ -63,6 +64,9 @@ header {
       }
     }
   }
+}
+header.scrolled {
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2);
 }
 
 @media (max-width: 768px) {
@@ -94,7 +98,7 @@ header {
             flex-direction: column;
             width: 100%;
             background: #000000d0;
-            top: 64px;
+            top: 78px;
             left: 0;
             bottom: 0;
 
@@ -108,7 +112,7 @@ header {
             width: 40%;
             height: 100%;
             background-color: #fff;
-            padding: 20px 0;
+            padding: 0 0 0 0;
             align-items: start;
             li {
               display: flex;
@@ -117,6 +121,7 @@ header {
               transition: all 0.5s;
               padding: 20px 20px;
               border-bottom: 2px solid #ccc;
+              cursor: pointer;
               &:hover {
                 background: #00000070;
                 a {

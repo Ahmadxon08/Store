@@ -16,6 +16,20 @@ section {
   .typeBody {
     width: 100%;
     min-height: 40vh;
+
+    .loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 40vh;
+      p {
+        font-size: 24px;
+        font-weight: 600;
+        font-family: Rubik;
+        color: #661d9b;
+      }
+    }
     .boxBody {
       display: grid;
       align-items: center;
