@@ -47,10 +47,6 @@ const Language = () => {
     selectedTitle = "titleUz";
   }
 
-  console.log("sssssssss", typeof selectedTitle);
-
-  console.log("Selected Subtitle:", selectedSubtitle);
-
   localStorage.setItem("selectedSubtitle", selectedSubtitle);
   localStorage.setItem("selectedTitle", selectedTitle);
 
@@ -85,7 +81,7 @@ const Language = () => {
       </Button>
       <Menu
         sx={{
-          marginTop: "21px",
+          marginTop: "15.4px",
           zIndex: 10432,
         }}
         anchorEl={anchorEl}

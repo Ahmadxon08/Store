@@ -1,40 +1,47 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-import axios from "axios";
 import ProductImages from "./ProductImages";
 import ProductDetailModal from "../productModal/ProductDatailModal";
 import useLanguageStore from "../lang/languageStore";
+import { useProducts } from "../../context/useContext";
 
 const FilteredItem = ({ selectedType }) => {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  // const [products, setProducts] = useState([]);
+  // const [loading, setLoading] = useState(true);
   const [selected, setSelected] = useState(null);
   const { selectedLanguage } = useLanguageStore();
   console.log(selectedType);
 
-  const fetchProducts = async (type) => {
-    try {
-      setLoading(true);
-      const res = await axios.post(
-        "http://213.148.31.6:5050/store/onlineStoreProductsByType",
-        { type: type.toString() }
-      );
-      setProducts(res.data);
-      console.log(res.data);
-    } catch (err) {
-      setError("Ma'lumotlarni yuklashda xatolik yuz berdi!");
-      console.log(err);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const {
+    fetchProductsByType,
+    error,
+    typedProducts,
+    setTypedProducts,
+    loading,
+  } = useProducts();
+
+  // const fetchProducts = async (type) => {
+  //   try {
+  //     setLoading(true);
+  //     const res = await axios.post(
+  //       "http://213.148.31.6:5050/store/onlineStoreProductsByType",
+  //       { type: type.toString() }
+  //     );
+  //     setProducts(res.data);
+  //     console.log(res.data);
+  //   } catch (err) {
+  //     setError("Ma'lumotlarni yuklashda xatolik yuz berdi!");
+  //     console.log(err);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   useEffect(() => {
     if (selectedType !== "all") {
-      fetchProducts(selectedType);
+      fetchProductsByType(selectedType);
     } else {
-      setProducts([]);
+      setTypedProducts([]);
     }
   }, [selectedType]);
 
@@ -87,9 +94,9 @@ const FilteredItem = ({ selectedType }) => {
         </div>
       ) : error ? (
         <p>{error}</p>
-      ) : products.length > 0 ? (
+      ) : typedProducts.length > 0 ? (
         <ul className="boxBody">
-          {products.map((item) => {
+          {typedProducts.map((item) => {
             const { title, subtitle } = getTitle(item);
             return (
               <li

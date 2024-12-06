@@ -7,6 +7,8 @@ const ProductContext = createContext();
 
 export const ProductProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
+  const [typedProducts, setTypedProducts] = useState([]);
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [cartItems, setCartItems] = useState([]);
@@ -58,7 +60,7 @@ export const ProductProvider = ({ children }) => {
   };
 
   // Mahsulotlarni API orqali olish
-  const fetchProducts = async () => {
+  const fetchProductsHot = async () => {
     setLoading(true);
     try {
       const response = await axios.post(
@@ -75,13 +77,27 @@ export const ProductProvider = ({ children }) => {
       setLoading(false);
     }
   };
+  const fetchProductsByType = async (type) => {
+    setLoading(true);
+    try {
+      const response = await axios.post(
+        "http://92.223.44.222:5050/store/onlineStoreProductsByType",
+        { type: type.toString() }
+      );
+      setTypedProducts(response.data);
+    } catch (err) {
+      setError("Mahsulotlar yuklab olinmadi");
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   // Mahsulot o'chirish
 
   useEffect(() => {
-    fetchProducts();
+    fetchProductsHot();
   }, []);
-
   return (
     <ProductContext.Provider
       value={{
@@ -94,6 +110,8 @@ export const ProductProvider = ({ children }) => {
         handleAddCart, // handleRemoveCart,
         handleDelete,
         count,
+        fetchProductsByType,
+        typedProducts,
         setCount,
       }}>
       {children}
