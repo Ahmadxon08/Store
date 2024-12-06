@@ -5,18 +5,64 @@ import axios from "axios";
 // Context yaratish
 const ProductContext = createContext();
 
-// Provider yaratish
 export const ProductProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [cartItems, setCartItems] = useState([]);
+  const [count, setCount] = useState(0);
+
+  const handleAddCart = (item) => {
+    const existItem = cartItems.find((c) => c._id === item._id);
+
+    if (existItem) {
+      // Agar mahsulot allaqachon savatchada bo'lsa, uning miqdorini oshiring
+      const newData = cartItems.map((c) =>
+        c._id === item._id ? { ...existItem, quantity: c.quantity + 1 } : c
+      );
+      setCartItems(newData);
+
+      console.log("cart data", newData);
+    } else {
+      // Yangi mahsulotni savatchaga qo'shing
+      const newdata = [...cartItems, { ...item, quantity: 1 }];
+
+      console.log("new data", newdata);
+
+      setCartItems(newdata);
+    }
+  };
+
+  const handleRemoveCart = (item) => {
+    const existItem = cartItems.find((c) => c._id === item._id);
+    console.log("Delete cart item 0", cartItems);
+
+    if (existItem.quantity === 1) {
+      const newData = cartItems.filter((c) => c._id !== existItem._id);
+      console.log("Delete cart item 1", newData);
+
+      setCartItems(newData);
+    } else {
+      const newData = cartItems.map((c) =>
+        c._id === item._id ? { ...existItem, quantity: c.quantity - 1 } : c
+      );
+      console.log("Delete cart item 2", newData);
+
+      setCartItems(newData);
+    }
+  };
+
+  const handleDelete = (productId) => {
+    const newCartItems = cartItems.filter((item) => item._id !== productId);
+    setCartItems(newCartItems);
+  };
 
   // Mahsulotlarni API orqali olish
   const fetchProducts = async () => {
     setLoading(true);
     try {
       const response = await axios.post(
-        "http://213.148.31.6:5050/store/onlineStoreProductsHot",
+        "http://92.223.44.222:5050/store/onlineStoreProductsHot",
         {
           type: "hot",
         }
@@ -30,32 +76,7 @@ export const ProductProvider = ({ children }) => {
     }
   };
 
-  // Mahsulot qo'shish
-  const addProduct = async (product) => {
-    try {
-      const response = await axios.post(
-        "https://api.example.com/products",
-        product
-      );
-      setProducts((prevProducts) => [...prevProducts, response.data]);
-    } catch (err) {
-      setError("Mahsulot qo'shishda xatolik");
-      console.log(err);
-    }
-  };
-
   // Mahsulot o'chirish
-  const removeProduct = async (id) => {
-    try {
-      await axios.delete(`https://api.example.com/products/${id}`);
-      setProducts((prevProducts) =>
-        prevProducts.filter((product) => product.id !== id)
-      );
-    } catch (err) {
-      setError("Mahsulotni o'chirishda xatolik");
-      console.log(err);
-    }
-  };
 
   useEffect(() => {
     fetchProducts();
@@ -63,13 +84,25 @@ export const ProductProvider = ({ children }) => {
 
   return (
     <ProductContext.Provider
-      value={{ products, addProduct, removeProduct, loading, error }}>
+      value={{
+        products,
+        handleRemoveCart,
+        setCartItems,
+        cartItems,
+        loading,
+        error,
+        handleAddCart, // handleRemoveCart,
+        handleDelete,
+        count,
+        setCount,
+      }}>
       {children}
     </ProductContext.Provider>
   );
 };
 
 // Custom hook - useProducts
+// eslint-disable-next-line react-refresh/only-export-components
 export const useProducts = () => {
   return useContext(ProductContext);
 };

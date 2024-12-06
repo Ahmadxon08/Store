@@ -2,8 +2,8 @@ import "./Popular.scss";
 import { useEffect, useState } from "react";
 import ProductDetailModal from "../productModal/ProductDatailModal";
 import { useProducts } from "../../context/useContext.jsx";
-import ProductImages from "../tab/ProductImages.jsx";
 import useLanguageStore from "../lang/languageStore.js";
+import Card from "../card/Card.jsx";
 
 const cube = "./assets/images/cube.png";
 const elps = "./assets/images/elips.png";
@@ -18,8 +18,6 @@ const Popular = () => {
   console.log(selectedLanguage);
 
   const { products } = useProducts();
-
-  console.log(products);
 
   const handleClick = (product) => {
     setSelectedProduct(product);
@@ -82,20 +80,16 @@ const Popular = () => {
             <div>{error}</div>
           ) : (
             products.map((product) => {
-              const { subtitle, title } = getTitle(product); // Get the correct title and subtitle based on the language
+              const { subtitle, title } = getTitle(product);
 
               return (
-                <div
+                <Card
                   key={product._id}
-                  className="product"
-                  onClick={() => handleClick(product)}>
-                  <ProductImages product={product} />
-                  <div className="productText">
-                    <h4>{subtitle}</h4> {/* Dynamically rendered subtitle */}
-                    <p>{title}</p> {/* Dynamically rendered title */}
-                    <span>{product.price} sum</span>
-                  </div>
-                </div>
+                  subtitle={subtitle}
+                  title={title}
+                  product={product}
+                  handleClick={handleClick}
+                />
               );
             })
           )}

@@ -1,0 +1,199 @@
+.cartBody {
+  display: flex;
+  padding: 0 5px !important;
+  flex-direction: column;
+  overflow-y: auto;
+  height: 100%;
+  gap: 10px;
+  width: 100%;
+  .buy {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: sticky;
+    bottom: 0;
+    background-color: #fff;
+    height: 150px;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    button {
+      width: 100%;
+    }
+  }
+
+  .head {
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    padding: 10px 0;
+    background-color: #fff;
+    width: 100%;
+    transition: all 0.4s ease-in-out;
+
+    h2 {
+      font-family: Rubik;
+      font-size: 22px;
+      font-weight: 500;
+      line-height: 27px;
+      color: #333;
+      span {
+        font-family: Rubik;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 24px;
+        color: rgb(159, 108, 37);
+        margin-left: 10px;
+      }
+    }
+  }
+
+  .cartItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 10px;
+    .text {
+      display: flex;
+      align-items: start;
+      width: 100%;
+      text-align: start;
+
+      span {
+        font-family: Rubik;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 24px;
+        color: #333;
+      }
+    }
+    .btnAndAct {
+      display: flex;
+      align-items: center;
+      width: 50px;
+      p {
+        font-family: Rubik;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 24px;
+        color: #333;
+      }
+      button {
+        background-color: transparent;
+        border: none;
+        font-family: Rubik;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 24px;
+        color: #333;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+@media (max-width: 425px) {
+  .cartBody {
+    display: flex;
+    padding: 0 5px !important;
+    flex-direction: column;
+    overflow-y: auto;
+    height: 100%;
+    gap: 10px;
+    width: 100%;
+    .buy {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      position: sticky;
+      bottom: 0;
+      background-color: #fff;
+      height: 150px;
+      left: 0;
+      right: 0;
+      z-index: 2;
+      button {
+        width: 100%;
+      }
+    }
+
+    .head {
+      display: flex;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1;
+      padding: 10px 0;
+      background-color: #fff;
+      width: 100%;
+      transition: all 0.4s ease-in-out;
+
+      h2 {
+        font-family: Rubik;
+        font-size: 22px;
+        font-weight: 500;
+        line-height: 27px;
+        color: #333;
+        span {
+          font-family: Rubik;
+          font-size: 18px;
+          font-weight: 500;
+          line-height: 24px;
+          color: rgb(159, 108, 37);
+          margin-left: 10px;
+        }
+      }
+    }
+
+    .cartItem {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      gap: 10px;
+      .text {
+        display: none;
+        align-items: start;
+        width: 100%;
+        text-align: start;
+
+        span {
+          font-family: Rubik;
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 24px;
+          color: #333;
+        }
+      }
+      .btnAndAct {
+        display: flex;
+        align-items: center;
+        width: 50px;
+        p {
+          font-family: Rubik;
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 24px;
+          color: #333;
+        }
+        button {
+          background-color: transparent;
+          border: none;
+          font-family: Rubik;
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 24px;
+          color: #333;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
