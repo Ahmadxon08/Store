@@ -73,6 +73,19 @@ export const ProductProvider = ({ children }) => {
     }
   };
 
+  /////////////////////////////////
+
+  const handleIncrement = (product) => {
+    setCount((prevCount) => prevCount + 1);
+    handleAddCart(product);
+  };
+  const handleDecrement = (product) => {
+    if (count > 0) {
+      setCount((prevCount) => prevCount - 1);
+    }
+    handleRemoveCart(product);
+  };
+
   const isInCart = (id) => {
     const item = cartItems.find((c) => c._id === id);
     return item ? item.quantity : 0;
@@ -130,6 +143,8 @@ export const ProductProvider = ({ children }) => {
         setCartItems,
         cartItems,
         loading,
+        handleIncrement,
+        handleDecrement,
         error,
         handleAddCart,
         handleDelete,

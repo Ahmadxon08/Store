@@ -14,13 +14,31 @@ const emptyCart = "./assets/images/emptyCart.png";
 
 const SaveCart = () => {
   const { t } = useTranslation();
+  const { isDrawerOpen, closeDrawer } = useDrawerStore();
+
   const [totalPrice, setTotalPrice] = useState(0);
-  const { cartItems, getTitle, handleDelete } = useProducts();
+  const { cartItems, getTitle, isInCart, setCartItems, handleDelete } =
+    useProducts();
 
   const handleDeleteItem = (productId) => {
     handleDelete(productId);
   };
+  const handleIncrement = (productId) => {
+    const updatedCart = cartItems.map((item) =>
+      item._id === productId ? { ...item, quantity: item.quantity + 1 } : item
+    );
+    setCartItems(updatedCart);
+  };
 
+  // Tovarning miqdorini kamaytirish
+  const handleDecrement = (productId) => {
+    const updatedCart = cartItems.map((item) =>
+      item._id === productId && item.quantity > 1
+        ? { ...item, quantity: item.quantity - 1 }
+        : item
+    );
+    setCartItems(updatedCart);
+  };
   useEffect(() => {
     const calculateTotalPrice = () => {
       const price = cartItems.reduce(
@@ -34,7 +52,7 @@ const SaveCart = () => {
 
   console.log(cartItems);
 
-  const { isDrawerOpen, closeDrawer } = useDrawerStore();
+  const countItems = cartItems.length;
 
   const fixedImg = (product) => {
     const imageUrl = `/assets/images/${product.type1}100/${product.photoUrl}.png`;
@@ -44,8 +62,8 @@ const SaveCart = () => {
         className="fixed_img"
         src={imageUrl}
         alt={`Product image`}
-        width={70}
-        height={50}
+        width={100}
+        height={98}
         style={{ objectFit: "cover" }}
       />
     );
@@ -57,8 +75,8 @@ const SaveCart = () => {
         width: {
           xs: "100%",
           sm: "400px",
-          md: "500px",
-          lg: "600px",
+          md: "600px",
+          lg: "700px",
         },
         padding: 2,
       }}
@@ -80,29 +98,53 @@ const SaveCart = () => {
         <>
           <div className="head">
             <h2>
-              Savatdagi tovarlar naxlari{" "}
+              Savatdagi tovarlar soni {countItems} naxlari
               <span>
-                {totalPrice.toLocaleString("en-US", {
-                  style: "currency",
-                  currency: "USD",
+                {totalPrice.toLocaleString("uz-UZ", {
+                  style: "decimal",
                 })}
+                so&#39;m
               </span>
             </h2>
           </div>
 
           {cartItems.map((item, i) => {
             const { title } = getTitle(item);
+            const itemTotalPrice = item.price * item.quantity;
+
             return (
               <div className="cartItem" key={i}>
                 <div className="img_container">{fixedImg(item)}</div>
                 <div className="text">
                   <p>{title}</p>
+
+                  <div className="cartAction">
+                    <div className="btns">
+                      <button onClick={() => handleIncrement(item._id)}>
+                        +
+                      </button>
+                      <span>{isInCart(item._id)}</span>
+
+                      <button
+                        onClick={() => handleDecrement(item._id)}
+                        disabled={isInCart(item._id) === 0}>
+                        -
+                      </button>
+                    </div>
+                    <span>
+                      {itemTotalPrice.toLocaleString("uz-UZ", {
+                        style: "decimal",
+                      })}
+                      so&#39;m
+                    </span>
+                  </div>
                 </div>
+
                 <div className="btnAndAct">
-                  <span>X{item.quantity}</span>
                   <button onClick={() => handleDeleteItem(item._id)}>
                     <MdDelete size={32} color="#7421b0" />
                   </button>{" "}
+                  <span>X{item.quantity}</span>
                 </div>
               </div>
             );
