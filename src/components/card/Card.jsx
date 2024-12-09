@@ -7,7 +7,7 @@ import { useProducts } from "../../context/useContext.jsx";
 const Card = ({ product, subtitle, title, handleClick }) => {
   const [isAdded, setIsAdded] = useState(false);
 
-  const { handleAddCart, count, cartItems, setCount, handleRemoveCart } =
+  const { handleAddCart, count, isInCart, setCount, handleRemoveCart } =
     useProducts();
 
   console.log(isAdded);
@@ -27,10 +27,7 @@ const Card = ({ product, subtitle, title, handleClick }) => {
     setCount(1);
     handleAddCart(product);
   };
-  const isInCart = (id) => {
-    const item = cartItems.find((c) => c._id === id);
-    return item ? item.quantity : 0;
-  };
+
   console.log(count);
 
   return (

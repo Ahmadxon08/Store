@@ -18,7 +18,6 @@ export const ProductProvider = ({ children }) => {
     const existItem = cartItems.find((c) => c._id === item._id);
 
     if (existItem) {
-      // Agar mahsulot allaqachon savatchada bo'lsa, uning miqdorini oshiring
       const newData = cartItems.map((c) =>
         c._id === item._id ? { ...existItem, quantity: c.quantity + 1 } : c
       );
@@ -26,7 +25,6 @@ export const ProductProvider = ({ children }) => {
 
       console.log("cart data", newData);
     } else {
-      // Yangi mahsulotni savatchaga qo'shing
       const newdata = [...cartItems, { ...item, quantity: 1 }];
 
       console.log("new data", newdata);
@@ -52,6 +50,11 @@ export const ProductProvider = ({ children }) => {
 
       setCartItems(newData);
     }
+  };
+
+  const isInCart = (id) => {
+    const item = cartItems.find((c) => c._id === id);
+    return item ? item.quantity : 0;
   };
 
   const handleDelete = (productId) => {
@@ -107,12 +110,13 @@ export const ProductProvider = ({ children }) => {
         cartItems,
         loading,
         error,
-        handleAddCart, // handleRemoveCart,
+        handleAddCart,
         handleDelete,
         count,
         fetchProductsByType,
         typedProducts,
         setCount,
+        isInCart,
       }}>
       {children}
     </ProductContext.Provider>

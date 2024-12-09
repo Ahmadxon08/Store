@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-import ProductImages from "./ProductImages";
 import ProductDetailModal from "../productModal/ProductDatailModal";
 import useLanguageStore from "../lang/languageStore";
 import { useProducts } from "../../context/useContext";
+import FiteredCard from "../card/FiteredCard";
 
 const FilteredItem = ({ selectedType }) => {
   // const [products, setProducts] = useState([]);
@@ -19,23 +19,6 @@ const FilteredItem = ({ selectedType }) => {
     setTypedProducts,
     loading,
   } = useProducts();
-
-  // const fetchProducts = async (type) => {
-  //   try {
-  //     setLoading(true);
-  //     const res = await axios.post(
-  //       "http://213.148.31.6:5050/store/onlineStoreProductsByType",
-  //       { type: type.toString() }
-  //     );
-  //     setProducts(res.data);
-  //     console.log(res.data);
-  //   } catch (err) {
-  //     setError("Ma'lumotlarni yuklashda xatolik yuz berdi!");
-  //     console.log(err);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
 
   useEffect(() => {
     if (selectedType !== "all") {
@@ -99,21 +82,13 @@ const FilteredItem = ({ selectedType }) => {
           {typedProducts.map((item) => {
             const { title, subtitle } = getTitle(item);
             return (
-              <li
+              <FiteredCard
+                item={item}
+                title={title}
                 key={item._id}
-                className="box"
-                onClick={() => handleClick(item)}>
-                {/* Product Image Component */}
-                <ProductImages product={item} />
-
-                {/* Product Info */}
-                <div className="boxText">
-                  <h3>{subtitle}</h3>
-                  <span>{title}</span>
-                  <span> Type: {item.type1}</span>
-                  <span> Price: {item.price}</span>
-                </div>
-              </li>
+                subtitle={subtitle}
+                handleClick={handleClick}
+              />
             );
           })}
         </ul>
