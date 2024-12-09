@@ -6,10 +6,10 @@ import Language from "../lang/Language";
 import { TfiAlignRight } from "react-icons/tfi";
 import { LiaCompressSolid } from "react-icons/lia";
 import { useTranslation } from "react-i18next";
-import { TiShoppingCart } from "react-icons/ti";
 import { IconButton } from "@mui/material";
 import { useProducts } from "../../context/useContext";
 import { useDrawerStore } from "../../store/useDrawerStore";
+import { MdOutlineShoppingBag } from "react-icons/md";
 
 const Header = () => {
   const openDrawer = useDrawerStore((state) => state.openDrawer);
@@ -46,6 +46,7 @@ const Header = () => {
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
   return (
     <header className={isScrolled ? "scrolled" : ""}>
       <div className="container">
@@ -83,7 +84,7 @@ const Header = () => {
                   {totalQuantity > 0 ? (
                     <span className="badge">{totalQuantity}</span>
                   ) : null}
-                  <TiShoppingCart size={32} color="#7421b0" />
+                  <MdOutlineShoppingBag size={32} color="#7421b0" />
                 </IconButton>
 
                 <Language />

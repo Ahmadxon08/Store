@@ -8,10 +8,14 @@ import "./SaveCart.scss";
 import { Button } from "@mui/material";
 import { useDrawerStore } from "../../store/useDrawerStore";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+
+const emptyCart = "./assets/images/emptyCart.png";
 
 const SaveCart = () => {
+  const { t } = useTranslation();
   const [totalPrice, setTotalPrice] = useState(0);
-  const { cartItems, handleDelete } = useProducts();
+  const { cartItems, getTitle, handleDelete } = useProducts();
 
   const handleDeleteItem = (productId) => {
     handleDelete(productId);
@@ -51,7 +55,7 @@ const SaveCart = () => {
     <Box
       sx={{
         width: {
-          xs: "250px",
+          xs: "100%",
           sm: "400px",
           md: "500px",
           lg: "600px",
@@ -63,35 +67,51 @@ const SaveCart = () => {
       onClick={(e) => e.stopPropagation()}
       onKeyDown={closeDrawer}
       inert={isDrawerOpen ? null : "true"}>
-      <div className="head">
-        <h2>
-          Savatdagi tovarlar naxlari{" "}
-          <span>
-            {totalPrice.toLocaleString("en-US", {
-              style: "currency",
-              currency: "USD",
-            })}
-          </span>
-        </h2>
-      </div>
-
-      {cartItems.map((item, i) => (
-        <div className="cartItem" key={i}>
-          <div className="img_container">{fixedImg(item)}</div>
-          <div className="text">
-            <p>{item.type2}</p>
-          </div>
-          <div className="btnAndAct">
-            <span>X{item.quantity}</span>
-            <button onClick={() => handleDeleteItem(item._id)}>
-              <MdDelete size={32} color="#7421b0" />
-            </button>{" "}
-          </div>
+      {cartItems.length === 0 ? (
+        <div className="emptyCart">
+          <img src={emptyCart} alt="Bo'sh savat" />
+          <h3>{t("cartEmptyTitle")}</h3>
+          <p>{t("cartEmptyParagraph")}</p>
+          <Button variant="contained" onClick={closeDrawer}>
+            {t("startShopping")}
+          </Button>
         </div>
-      ))}
-      <div className="buy">
-        <Button variant="contained">Sotib olish</Button>
-      </div>
+      ) : (
+        <>
+          <div className="head">
+            <h2>
+              Savatdagi tovarlar naxlari{" "}
+              <span>
+                {totalPrice.toLocaleString("en-US", {
+                  style: "currency",
+                  currency: "USD",
+                })}
+              </span>
+            </h2>
+          </div>
+
+          {cartItems.map((item, i) => {
+            const { title } = getTitle(item);
+            return (
+              <div className="cartItem" key={i}>
+                <div className="img_container">{fixedImg(item)}</div>
+                <div className="text">
+                  <p>{title}</p>
+                </div>
+                <div className="btnAndAct">
+                  <span>X{item.quantity}</span>
+                  <button onClick={() => handleDeleteItem(item._id)}>
+                    <MdDelete size={32} color="#7421b0" />
+                  </button>{" "}
+                </div>
+              </div>
+            );
+          })}
+          <div className="buy">
+            <Button variant="contained"> {t("buy")}</Button>
+          </div>
+        </>
+      )}
     </Box>
   );
 

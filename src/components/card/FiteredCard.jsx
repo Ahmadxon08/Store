@@ -2,7 +2,8 @@
 import { useState } from "react";
 import { useProducts } from "../../context/useContext";
 import ProductImages from "../tab/ProductImages";
-import { Button } from "@mui/material";
+import { IconButton } from "@mui/material";
+import { BsBagPlus } from "react-icons/bs";
 
 const FiteredCard = ({ item, handleClick, subtitle, title }) => {
   const [isAdded, setIsAdded] = useState(false);
@@ -27,33 +28,39 @@ const FiteredCard = ({ item, handleClick, subtitle, title }) => {
   };
   return (
     <li key={item._id} className="box" onClick={() => handleClick(item)}>
-      <span
-        className={`count ${isInCart(item._id) === 0 ? "count_hidden" : ""}`}>
-        {isInCart(item._id)}
-      </span>
       <ProductImages product={item} />
 
-      {/* Product Info */}
       <div className="boxText">
         <h3>{subtitle}</h3>
         <span>{title}</span>
-        <span> Type: {item.type1}</span>
-        <span> Price: {item.price}</span>
+
         <div className="btnBody" onClick={(e) => e.stopPropagation()}>
-          {isInCart(item._id) === 0 ? (
-            <button className="btn1" onClick={handleAddToCart}>
-              Add to Cart
-            </button>
-          ) : (
-            <div className="btns">
-              <Button onClick={handleIncrement}>+</Button>
-              <Button
-                onClick={handleDecrement}
-                disabled={isInCart(item._id) === 0}>
-                -
-              </Button>
-            </div>
-          )}
+          <span>
+            {item.price
+              .toLocaleString("uz-UZ", {
+                style: "decimal",
+              })
+              .replace(/[^\d,]/g, "")}
+            so&#39;m
+          </span>{" "}
+          <div className="btnCart">
+            {isInCart(item._id) === 0 ? (
+              <IconButton onClick={handleAddToCart}>
+                <BsBagPlus />
+              </IconButton>
+            ) : (
+              <div className="btns">
+                <button onClick={handleIncrement}>+</button>
+                <span>{isInCart(item._id)}</span>
+
+                <button
+                  onClick={handleDecrement}
+                  disabled={isInCart(item._id) === 0}>
+                  -
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </li>

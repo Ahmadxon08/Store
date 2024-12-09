@@ -4,16 +4,19 @@ import ProductDetailModal from "../productModal/ProductDatailModal";
 import { useProducts } from "../../context/useContext.jsx";
 import useLanguageStore from "../lang/languageStore.js";
 import Card from "../card/Card.jsx";
+import { useTranslation } from "react-i18next";
 
 const cube = "./assets/images/cube.png";
 const elps = "./assets/images/elips.png";
 const btmImage = "./assets/images/btm.png";
 
 const Popular = () => {
+  const { t } = useTranslation();
   const [isLoading] = useState(false);
   const [error] = useState(null);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const { selectedLanguage } = useLanguageStore();
+  const { getTitle } = useProducts();
 
   console.log(selectedLanguage);
 
@@ -38,25 +41,6 @@ const Popular = () => {
     };
   }, [selectedProduct]);
 
-  const getTitle = (product) => {
-    if (selectedLanguage.value === "en") {
-      return {
-        subtitle: product.subTitleEn,
-        title: product.titleEn,
-      };
-    } else if (selectedLanguage.value === "ru") {
-      return {
-        subtitle: product.subTitleRu,
-        title: product.titleRu,
-      };
-    } else {
-      return {
-        subtitle: product.subTitleUz,
-        title: product.titleUz,
-      };
-    }
-  };
-
   return (
     <section>
       <div className="imgs">
@@ -66,12 +50,8 @@ const Popular = () => {
 
       <div className="container">
         <div className="popularHead">
-          <h2>
-            Popular <span>Products</span>
-          </h2>
-          <h3>
-            The best <span>selling</span> products
-          </h3>
+          <h2 dangerouslySetInnerHTML={{ __html: t("popularProducts") }} />
+          <h3 dangerouslySetInnerHTML={{ __html: t("bestSellingProducts") }} />
         </div>
         <div className="pupularBody">
           {isLoading ? (

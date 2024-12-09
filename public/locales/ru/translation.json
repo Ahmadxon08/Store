@@ -1,8 +1,15 @@
 {
   "greeting": "Привет",
-  "welcome": "Добро пожаловать на наш сайт!",
+  "welcome": "Добро пожаловать на наш веб-сайт!",
   "bag": "сумка",
   "medal": "медаль",
   "trophies": "трофеи",
-  "jersey": "футболка"
+  "jersey": "футболка",
+  "cartEmptyTitle": "Ваша корзина пока пуста",
+  "cartEmptyParagraph": "Посмотрите наши новые товары и выберите понравившиеся.",
+  "buy": "Купить",
+  "startShopping": "Начать покупки",
+  "addToCart": "Добавить в корзину",
+  "popularProducts": "Популярные <span>Товары</span>",
+  "bestSellingProducts": "Лучшие <span>продаваемые</span> товары"
 }

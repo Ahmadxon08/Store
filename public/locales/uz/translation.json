@@ -4,5 +4,12 @@
   "bag": "sumka",
   "medal": "medal",
   "trophies": "sovrinlar",
-  "jersey": "futbolka"
+  "jersey": "futbolka",
+  "cartEmptyTitle": "Sizning savatingiz hali bo'sh",
+  "cartEmptyParagraph": "Yangi mahsulotlarimizni ko'ring va tanlang.",
+  "buy": "Xarid qilish",
+  "startShopping": "Xarid qilishni boshlash",
+  "addToCart": "Savatga qo'shish",
+  "popularProducts": "Mashhur <span>Mahsulotlar</span>",
+  "bestSellingProducts": "Eng yaxshi <span>sotiladigan</span> mahsulotlar"
 }

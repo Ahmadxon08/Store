@@ -4,5 +4,12 @@
   "bag": "bag",
   "medal": "medal",
   "trophies": "trophies",
-  "jersey": "jersey"
+  "jersey": "jersey",
+  "cartEmptyTitle": "Your cart is still empty",
+  "cartEmptyParagraph": "Check out our new products and pick your favorites.",
+  "buy": "Buy",
+  "startShopping": "Start Shopping",
+  "addToCart": "Add to Cart",
+  "popularProducts": "Popular <span>Products</span>",
+  "bestSellingProducts": "The best <span>selling</span> products"
 }

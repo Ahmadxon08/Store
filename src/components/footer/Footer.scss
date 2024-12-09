@@ -36,6 +36,7 @@ footer {
           border: none;
           border: 2px solid #ccc;
           outline: none;
+          font-family: Rubik;
           padding: 10px 0 0 10px;
           border-radius: 6px;
         }
@@ -248,10 +249,110 @@ footer {
         }
       }
     }
+  }
+}
+@media only screen and (max-width: 425px) {
+  footer {
+    .footerBody {
+      .pay {
+        .text {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+
+          textarea {
+            width: 100%;
+            height: 150px;
+            resize: none;
+            border: none;
+            border: 2px solid #ccc;
+            outline: none;
+            padding: 10px 0 0 10px;
+            border-radius: 6px;
+          }
+          textarea:focus {
+            border: 2px solid #7421b0;
+          }
+        }
+        .act {
+          border: #666;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 30px;
+          flex-direction: column;
+
+          width: 100%;
+
+          .qrcode {
+            display: flex;
+            width: 100%;
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: contain;
+            }
+          }
+          .action {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            justify-content: space-between;
+            gap: 30px;
+            button {
+              background-color: #7421b0;
+              transition: 0.3s ease-in-out;
+              color: #fff;
+              font-size: 22px;
+              border: none;
+              padding: 10px 20px;
+              border-radius: 6px;
+              cursor: pointer;
+              &:hover {
+                background-color: hsl(275, 68%, 51%);
+                color: #fff;
+              }
+            }
+          }
+        }
+        .orderInfo {
+          display: flex;
+          align-items: start;
+          width: 100%;
+          height: 100px;
+
+          justify-content: space-between;
+          flex-direction: column;
+          .order {
+            display: flex;
+            justify-content: start;
+            flex-direction: column;
+            align-items: self-start;
+            gap: 22px;
+            width: 100%;
+            h1 {
+              font-family: Rubik;
+              font-size: 22px;
+              font-weight: 500;
+              line-height: 0.4px;
+
+              text-align: center;
+            }
+            span {
+              font-family: Rubik;
+              font-size: 16px;
+              font-weight: 400;
+              line-height: 0px;
+              padding-left: 30px;
+            }
+          }
+        }
+      }
+    }
     .copyright {
       display: flex;
       align-items: center;
-      font-size: 14px;
+      font-size: 13px;
       color: #666;
       background-color: #66209233;
       width: 100%;

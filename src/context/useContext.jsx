@@ -1,11 +1,14 @@
 /* eslint-disable react/prop-types */
 import { createContext, useState, useEffect, useContext } from "react";
 import axios from "axios";
+import useLanguageStore from "../components/lang/languageStore";
 
 // Context yaratish
 const ProductContext = createContext();
 
 export const ProductProvider = ({ children }) => {
+  const { selectedLanguage } = useLanguageStore();
+
   const [products, setProducts] = useState([]);
   const [typedProducts, setTypedProducts] = useState([]);
 
@@ -13,6 +16,24 @@ export const ProductProvider = ({ children }) => {
   const [error, setError] = useState(null);
   const [cartItems, setCartItems] = useState([]);
   const [count, setCount] = useState(0);
+  const getTitle = (product) => {
+    if (selectedLanguage.value === "en") {
+      return {
+        subtitle: product.subTitleEn,
+        title: product.titleEn,
+      };
+    } else if (selectedLanguage.value === "ru") {
+      return {
+        subtitle: product.subTitleRu,
+        title: product.titleRu,
+      };
+    } else {
+      return {
+        subtitle: product.subTitleUz,
+        title: product.titleUz,
+      };
+    }
+  };
 
   const handleAddCart = (item) => {
     const existItem = cartItems.find((c) => c._id === item._id);
@@ -117,6 +138,7 @@ export const ProductProvider = ({ children }) => {
         typedProducts,
         setCount,
         isInCart,
+        getTitle,
       }}>
       {children}
     </ProductContext.Provider>

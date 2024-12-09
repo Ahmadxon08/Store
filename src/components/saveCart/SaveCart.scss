@@ -9,6 +9,7 @@
   .buy {
     display: flex;
     align-items: center;
+    justify-content: center;
     width: 100%;
     position: sticky;
     bottom: 0;
@@ -18,13 +19,23 @@
     right: 0;
     z-index: 2;
     button {
-      width: 100%;
+      background-color: #7421b0;
+      color: #fff;
+      font-family: Rubik;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 24px;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 80%;
     }
   }
 
   .head {
     display: flex;
     align-items: center;
+    justify-content: center;
     position: sticky;
     top: 0;
     left: 0;
@@ -93,6 +104,45 @@
         color: #333;
         cursor: pointer;
       }
+    }
+  }
+  .emptyCart {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+
+    img {
+      width: auto;
+      height: auto;
+      object-fit: cover;
+    }
+    h3 {
+      font-family: Rubik;
+      font-size: 28px;
+      font-weight: 500;
+      line-height: 24px;
+      color: #333;
+    }
+    p {
+      font-family: Rubik;
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 24px;
+      color: #333;
+    }
+    button {
+      background-color: #7421b0;
+      color: #fff;
+      font-family: Rubik;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 24px;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 50%;
     }
   }
 }
@@ -193,6 +243,45 @@
           color: #333;
           cursor: pointer;
         }
+      }
+    }
+    .emptyCart {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      gap: 20px;
+      width: 100%;
+      img {
+        width: auto;
+        height: auto;
+        object-fit: cover;
+      }
+      h3 {
+        font-family: Rubik;
+        font-size: 22px;
+        font-weight: 500;
+        line-height: 24px;
+        color: #333;
+      }
+      p {
+        font-family: Rubik;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 24px;
+        color: #333;
+      }
+      button {
+        background-color: #7421b0;
+        color: #fff;
+        font-family: Rubik;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 24px;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 90%;
       }
     }
   }

@@ -172,46 +172,54 @@ section {
           display: flex;
           align-items: center;
           gap: 20px;
-          justify-content: center;
+          justify-content: space-between;
           width: 100%;
           height: auto;
           position: absolute;
           bottom: 0;
-          .btn1 {
+          span {
             font-family: Rubik;
-            font-size: 22px;
+            font-size: 18px;
             font-weight: 400;
-            line-height: 24px;
-            padding: 10px 0;
-            text-align: center;
-            text-decoration-skip-ink: none;
-            border: none;
-            width: 100%;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: 0.3s ease-in-out;
-            &:hover {
-              color: #fff;
-              background-color: #661d9b;
-            }
+            line-height: 27px;
           }
-          .btns {
+          .btnCart {
             display: flex;
             align-items: center;
-            gap: 10px;
-            width: 100%;
-            button {
-              background-color: #7421b0;
-              color: #fff;
-              border: none;
+            width: 40%;
+            justify-content: flex-end;
+            .btns {
+              display: flex;
+              align-items: center;
               border-radius: 4px;
-              cursor: pointer;
-              width: 40%;
-              font-size: 22px;
-              padding: 10px 0;
-              transition: 0.3s ease-in-out;
-              &:hover {
-                background-color: #60199d;
+              overflow: hidden;
+              height: 40px;
+              width: 100%;
+              span {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-family: Rubik;
+                font-size: 18px;
+                font-weight: 400;
+                color: #000000fd;
+                border: none;
+                width: 25px;
+                background: #00000021;
+                font-size: 22px;
+                height: 100%;
+                cursor: pointer;
+                transition: background-color 0.3s ease-in-out;
+              }
+              button {
+                color: #000000fd;
+                border: none;
+                background: #9b96965b;
+                width: 50%;
+                height: 100%;
+                font-size: 22px;
+                cursor: pointer;
+                transition: background-color 0.3s ease-in-out;
               }
             }
           }
@@ -514,18 +522,17 @@ section {
             color: #828282;
           }
           button {
-            background-color: #fff;
-            color: #661d9b;
             font-family: Rubik;
             font-size: 16px;
             font-weight: 700;
             line-height: 24px;
             text-align: center;
+            background: #cccccc93;
+            color: #000000fd;
             text-decoration-skip-ink: none;
             border: none;
             border-radius: 4px;
             padding: 12px 24px;
-            border: 1px solid #661d9b;
             cursor: pointer;
             transition: 0.3s ease-in-out;
             &:hover {
