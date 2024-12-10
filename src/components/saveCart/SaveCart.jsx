@@ -9,8 +9,8 @@ import { Button } from "@mui/material";
 import { useDrawerStore } from "../../store/useDrawerStore";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import toast from "react-hot-toast";
 import { BsCheckCircleFill } from "react-icons/bs";
+import toast from "react-hot-toast";
 
 const emptyCart = "./assets/images/emptyCart.png";
 
@@ -19,15 +19,21 @@ const SaveCart = () => {
   const { isDrawerOpen, closeDrawer } = useDrawerStore();
 
   const [totalPrice, setTotalPrice] = useState(0);
+  const { cartItems, getTitle, isInCart, setCartItems, handleDelete } =
+    useProducts();
+
+  //////////////////////////////
+
   const notifyForDeletion = () => {
-    toast("mahsulot ochirildi", {
+    toast(t("deleteFromCart"), {
       icon: <BsCheckCircleFill size={32} color="red" />,
       position: "top-center",
       duration: 1500,
+      style: {
+        width: "auto",
+      },
     });
   };
-  const { cartItems, getTitle, isInCart, setCartItems, handleDelete } =
-    useProducts();
 
   const handleDeleteItem = (productId) => {
     handleDelete(productId);
@@ -108,19 +114,16 @@ const SaveCart = () => {
         <>
           <div className="head">
             <h2>
-              Savatdagi tovarlar soni {countItems} naxlari
-              <span>
-                {totalPrice.toLocaleString("uz-UZ", {
-                  style: "decimal",
-                })}
-                so&#39;m
-              </span>
+              {t("itemCount")} {countItems} {t("totalPrice")}
+              <span>{totalPrice}</span>
             </h2>
           </div>
 
           {cartItems.map((item, i) => {
             const { title } = getTitle(item);
             const itemTotalPrice = item.price * item.quantity;
+
+            console.log(itemTotalPrice, "itemm");
 
             return (
               <div className="cartItem" key={i}>
@@ -141,12 +144,7 @@ const SaveCart = () => {
                         -
                       </button>
                     </div>
-                    <span>
-                      {itemTotalPrice.toLocaleString("uz-UZ", {
-                        style: "decimal",
-                      })}
-                      so&#39;m
-                    </span>
+                    <span>{itemTotalPrice}</span>
                   </div>
                 </div>
 

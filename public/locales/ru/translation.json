@@ -11,5 +11,19 @@
   "startShopping": "Начать покупки",
   "addToCart": "Добавить в корзину",
   "popularProducts": "Популярные <span>Товары</span>",
-  "bestSellingProducts": "Лучшие <span>продаваемые</span> товары"
+  "bestSellingProducts": "Лучшие <span>продаваемые</span> товары",
+  "totalPrice": "и Общая цена",
+  "itemCount": "Количество товаров",
+  "removeItem": "Удалить товар",
+  "continueShopping": "Продолжить покупки",
+  "checkout": "Оформить заказ",
+  "emptyCart": "Очистить корзину",
+  "paymentMethod": "Способ оплаты",
+  "shippingAddress": "Адрес доставки",
+  "orderSummary": "Резюме заказа",
+  "orderConfirmation": "Подтверждение заказа",
+  "orderDetails": "Детали заказа",
+  "succesToCart": "Товар успешно добавлен в корзину!",
+  "deleteFromCart": "Товар удален из корзины.",
+  "saving": "Сохранение..."
 }

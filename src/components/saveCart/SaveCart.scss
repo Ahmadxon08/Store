@@ -227,6 +227,7 @@
       display: flex;
       align-items: center;
       position: sticky;
+      justify-content: center;
       top: 0;
       left: 0;
       right: 0;
@@ -243,9 +244,11 @@
         line-height: 27px;
         color: #333;
         span {
+          display: flex;
           font-family: Rubik;
-          font-size: 18px;
+          font-size: 29px;
           font-weight: 500;
+          font-weight: 400;
           line-height: 24px;
           color: rgb(159, 108, 37);
           margin-left: 10px;

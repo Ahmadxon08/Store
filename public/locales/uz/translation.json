@@ -11,5 +11,20 @@
   "startShopping": "Xarid qilishni boshlash",
   "addToCart": "Savatga qo'shish",
   "popularProducts": "Mashhur <span>Mahsulotlar</span>",
-  "bestSellingProducts": "Eng yaxshi <span>sotiladigan</span> mahsulotlar"
+  "bestSellingProducts": "Eng yaxshi <span>sotiladigan</span> mahsulotlar",
+  "totalPrice": " va Umumiy narx",
+  "itemCount": "Mahsulotlar soni",
+  "removeItem": " Mahsulotni o'chirish",
+  "continueShopping": "Xarid qilishni davom ettirish",
+  "checkout": "Buyurtma berish",
+  "emptyCart": "Savatchani tozalash",
+  "paymentMethod": "To'lov usuli",
+  "shippingAddress": "Yetkazib berish manzili",
+  "orderSummary": "Buyurtma xulosasi",
+  "orderConfirmation": "Buyurtma tasdiqlash",
+  "orderDetails": "Buyurtma tafsilotlari",
+
+  "succesToCart": "Mahsulot muvaffaqiyatli saqlandi!",
+  "deleteFromCart": "Mahsulot savatchadan o'chirildi.",
+  "saving": "Saqlanmoqda..."
 }

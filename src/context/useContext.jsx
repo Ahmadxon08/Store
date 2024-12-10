@@ -3,11 +3,13 @@ import { createContext, useState, useEffect, useContext } from "react";
 import axios from "axios";
 import useLanguageStore from "../components/lang/languageStore";
 import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 
 // Context yaratish
 const ProductContext = createContext();
 
 export const ProductProvider = ({ children }) => {
+  const { t } = useTranslation();
   const { selectedLanguage } = useLanguageStore();
 
   const [products, setProducts] = useState([]);
@@ -147,7 +149,7 @@ export const ProductProvider = ({ children }) => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         if (settings) {
-          resolve("Settings saved successfully");
+          resolve(t("succesToCart"));
         } else {
           reject("Failed to save settings");
         }
@@ -157,9 +159,12 @@ export const ProductProvider = ({ children }) => {
 
   const notifyForSuccess = () =>
     toast.promise(saveSettings(settings), {
-      loading: "Saving...",
-      success: <b>Settings saved!</b>,
+      loading: t("saving"),
+      success: <b>{t("succesToCart")}</b>,
       error: <b>Could not save.</b>,
+      style: {
+        width: "auto",
+      },
     });
 
   return (
