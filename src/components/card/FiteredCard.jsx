@@ -9,8 +9,14 @@ const FiteredCard = ({ item, handleClick, subtitle, title }) => {
   const [isAdded, setIsAdded] = useState(false);
   console.log(isAdded);
 
-  const { handleAddCart, count, isInCart, setCount, handleRemoveCart } =
-    useProducts();
+  const {
+    handleAddCart,
+    count,
+    isInCart,
+    setCount,
+    notifyForSuccess,
+    handleRemoveCart,
+  } = useProducts();
   const handleIncrement = () => {
     setCount((prevCount) => prevCount + 1);
     handleAddCart(item);
@@ -25,6 +31,7 @@ const FiteredCard = ({ item, handleClick, subtitle, title }) => {
     setIsAdded(true);
     setCount(1);
     handleAddCart(item);
+    notifyForSuccess();
   };
   return (
     <li key={item._id} className="box" onClick={() => handleClick(item)}>

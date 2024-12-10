@@ -9,6 +9,8 @@ import { Button } from "@mui/material";
 import { useDrawerStore } from "../../store/useDrawerStore";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import toast from "react-hot-toast";
+import { BsCheckCircleFill } from "react-icons/bs";
 
 const emptyCart = "./assets/images/emptyCart.png";
 
@@ -17,11 +19,19 @@ const SaveCart = () => {
   const { isDrawerOpen, closeDrawer } = useDrawerStore();
 
   const [totalPrice, setTotalPrice] = useState(0);
+  const notifyForDeletion = () => {
+    toast("mahsulot ochirildi", {
+      icon: <BsCheckCircleFill size={32} color="red" />,
+      position: "top-center",
+      duration: 1500,
+    });
+  };
   const { cartItems, getTitle, isInCart, setCartItems, handleDelete } =
     useProducts();
 
   const handleDeleteItem = (productId) => {
     handleDelete(productId);
+    notifyForDeletion();
   };
   const handleIncrement = (productId) => {
     const updatedCart = cartItems.map((item) =>

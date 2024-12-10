@@ -2,6 +2,7 @@
 import { createContext, useState, useEffect, useContext } from "react";
 import axios from "axios";
 import useLanguageStore from "../components/lang/languageStore";
+import toast from "react-hot-toast";
 
 // Context yaratish
 const ProductContext = createContext();
@@ -16,6 +17,8 @@ export const ProductProvider = ({ children }) => {
   const [error, setError] = useState(null);
   const [cartItems, setCartItems] = useState([]);
   const [count, setCount] = useState(0);
+  const settings = { theme: "dark", notifications: true };
+
   const getTitle = (product) => {
     if (selectedLanguage.value === "en") {
       return {
@@ -34,6 +37,8 @@ export const ProductProvider = ({ children }) => {
       };
     }
   };
+
+  /////Add to cart function
 
   const handleAddCart = (item) => {
     const existItem = cartItems.find((c) => c._id === item._id);
@@ -54,6 +59,8 @@ export const ProductProvider = ({ children }) => {
     }
   };
 
+  ///////// Remove from cart function
+
   const handleRemoveCart = (item) => {
     const existItem = cartItems.find((c) => c._id === item._id);
     console.log("Delete cart item 0", cartItems);
@@ -73,7 +80,7 @@ export const ProductProvider = ({ children }) => {
     }
   };
 
-  /////////////////////////////////
+  /////////////////////////////////  Increment for items function
 
   const handleIncrement = (product) => {
     setCount((prevCount) => prevCount + 1);
@@ -135,6 +142,26 @@ export const ProductProvider = ({ children }) => {
   useEffect(() => {
     fetchProductsHot();
   }, []);
+
+  const saveSettings = async (settings) => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (settings) {
+          resolve("Settings saved successfully");
+        } else {
+          reject("Failed to save settings");
+        }
+      }, 200);
+    });
+  };
+
+  const notifyForSuccess = () =>
+    toast.promise(saveSettings(settings), {
+      loading: "Saving...",
+      success: <b>Settings saved!</b>,
+      error: <b>Could not save.</b>,
+    });
+
   return (
     <ProductContext.Provider
       value={{
@@ -154,6 +181,7 @@ export const ProductProvider = ({ children }) => {
         setCount,
         isInCart,
         getTitle,
+        notifyForSuccess,
       }}>
       {children}
     </ProductContext.Provider>

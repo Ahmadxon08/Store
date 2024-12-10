@@ -9,8 +9,14 @@ import { IconButton } from "@mui/material";
 const Card = ({ product, subtitle, title, handleClick }) => {
   const [isAdded, setIsAdded] = useState(false);
 
-  const { handleAddCart, count, isInCart, setCount, handleRemoveCart } =
-    useProducts();
+  const {
+    handleAddCart,
+    count,
+    isInCart,
+    notifyForSuccess,
+    setCount,
+    handleRemoveCart,
+  } = useProducts();
 
   console.log(isAdded);
 
@@ -27,9 +33,8 @@ const Card = ({ product, subtitle, title, handleClick }) => {
   const handleAddToCart = () => {
     setIsAdded(true);
     handleAddCart(product);
+    notifyForSuccess();
   };
-
-  console.log(count);
 
   return (
     <div
