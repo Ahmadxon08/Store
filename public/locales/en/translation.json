@@ -23,7 +23,7 @@
   "orderSummary": "Order Summary",
   "orderConfirmation": "Order Confirmation",
   "orderDetails": "Order Details",
-  "succesToCart_en": "Product successfully added to cart!",
-  "deleteFromCart_en": "Product removed from cart.",
+  "succesToCart": "Product successfully added to cart!",
+  "deleteFromCart": "Product removed from cart.",
   "saving": "Saving..."
 }
