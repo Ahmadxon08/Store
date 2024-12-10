@@ -28,7 +28,7 @@ const SaveCart = () => {
     toast(t("deleteFromCart"), {
       icon: <BsCheckCircleFill size={32} color="red" />,
       position: "top-center",
-      duration: 1500,
+      duration: 1000,
       style: {
         width: "auto",
       },
@@ -144,7 +144,7 @@ const SaveCart = () => {
                         -
                       </button>
                     </div>
-                    <span>{itemTotalPrice}</span>
+                    <span>{itemTotalPrice} so&#39;m</span>
                   </div>
                 </div>
 

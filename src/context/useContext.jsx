@@ -40,45 +40,55 @@ export const ProductProvider = ({ children }) => {
     }
   };
 
-  /////Add to cart function
+  // localStorage'dan cartItemsni olish
+  useEffect(() => {
+    const savedCartItems = JSON.parse(localStorage.getItem("cartItems"));
+    if (savedCartItems) {
+      setCartItems(savedCartItems);
+    }
+  }, []);
 
+  // cartItems o'zgarganda localStoragega saqlash
+  useEffect(() => {
+    if (cartItems.length > 0) {
+      localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    }
+  }, [cartItems]);
+
+  /////Add to cart function
   const handleAddCart = (item) => {
-    const existItem = cartItems.find((c) => c._id === item._id);
+    const storedCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+
+    const existItem = storedCartItems.find((c) => c._id === item._id);
 
     if (existItem) {
-      const newData = cartItems.map((c) =>
-        c._id === item._id ? { ...existItem, quantity: c.quantity + 1 } : c
+      const newData = storedCartItems.map((c) =>
+        c._id === item._id ? { ...c, quantity: c.quantity + 1 } : c
       );
-      setCartItems(newData);
-
-      console.log("cart data", newData);
+      localStorage.setItem("cartItems", JSON.stringify(newData));
     } else {
-      const newdata = [...cartItems, { ...item, quantity: 1 }];
-
-      console.log("new data", newdata);
-
-      setCartItems(newdata);
+      const newData = [...storedCartItems, { ...item, quantity: 1 }];
+      localStorage.setItem("cartItems", JSON.stringify(newData));
     }
+
+    setCartItems(JSON.parse(localStorage.getItem("cartItems")));
   };
 
   ///////// Remove from cart function
 
   const handleRemoveCart = (item) => {
     const existItem = cartItems.find((c) => c._id === item._id);
-    console.log("Delete cart item 0", cartItems);
 
     if (existItem.quantity === 1) {
       const newData = cartItems.filter((c) => c._id !== existItem._id);
-      console.log("Delete cart item 1", newData);
-
       setCartItems(newData);
+      localStorage.setItem("cartItems", JSON.stringify(newData));
     } else {
       const newData = cartItems.map((c) =>
-        c._id === item._id ? { ...existItem, quantity: c.quantity - 1 } : c
+        c._id === item._id ? { ...c, quantity: c.quantity - 1 } : c
       );
-      console.log("Delete cart item 2", newData);
-
       setCartItems(newData);
+      localStorage.setItem("cartItems", JSON.stringify(newData));
     }
   };
 
@@ -99,10 +109,12 @@ export const ProductProvider = ({ children }) => {
     const item = cartItems.find((c) => c._id === id);
     return item ? item.quantity : 0;
   };
-
   const handleDelete = (productId) => {
     const newCartItems = cartItems.filter((item) => item._id !== productId);
+
     setCartItems(newCartItems);
+
+    localStorage.setItem("cartItems", JSON.stringify(newCartItems));
   };
 
   // Mahsulotlarni API orqali olish

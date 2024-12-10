@@ -18,11 +18,16 @@ const Header = () => {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   const { t } = useTranslation();
-  const { cartItems } = useProducts();
+  const { cartItems = [] } = useProducts();
   const totalQuantity = cartItems.reduce(
     (total, item) => total + item.quantity,
     0
   );
+  const [itemsInCart, setItemsInCart] = useState(cartItems.length);
+
+  useEffect(() => {
+    setItemsInCart(cartItems.length);
+  }, [cartItems]);
   console.log("totalQuantity", totalQuantity);
 
   console.log("header items quantity", cartItems);
@@ -81,8 +86,8 @@ const Header = () => {
                     openDrawer();
                   }}
                   aria-label="add to shopping cart">
-                  {totalQuantity > 0 ? (
-                    <span className="badge">{totalQuantity}</span>
+                  {itemsInCart > 0 ? (
+                    <span className="badge">{itemsInCart}</span>
                   ) : null}
                   <MdOutlineShoppingBag size={32} color="#7421b0" />
                 </IconButton>

@@ -30,6 +30,7 @@ const Card = ({ product, subtitle, title, handleClick }) => {
     }
     handleRemoveCart(product);
   };
+
   const handleAddToCart = () => {
     setIsAdded(true);
     handleAddCart(product);
